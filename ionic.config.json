@@ -1,0 +1,7 @@
+{
+  "name": "divi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
