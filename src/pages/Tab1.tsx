@@ -2,18 +2,23 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import ExploreContainer from '../components/ExploreContainer';
 import { Contacts } from '@capacitor-community/contacts'
 import './Tab1.css';
+import {useEffect, useState} from "react";
 
-const constants = () => {
-    let arr: any[] = [];
-     Contacts.getContacts().then(result => {
-        for (const contact of result.contacts) {
-            arr.push(<div>{contact}</div>);
-        }
-    });
-     return arr;
-}
 
 const Tab1: React.FC = () => {
+    const [contacts, setContacts] = useState<any[]>([123456]);
+    useEffect(() => {
+        Contacts.getContacts().then(result => {
+            for (const contact of result.contacts) {
+                setContacts([...contacts, contact])
+            }
+        });
+    })
+
+    const constantsDivs = () => {
+        return contacts.map((contact) => <div>{contact}</div>)
+    }
+
   return (
     <IonPage>
       <IonHeader>
@@ -22,7 +27,7 @@ const Tab1: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-          {constants()}
+          {constantsDivs()}
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Tab 1</IonTitle>
