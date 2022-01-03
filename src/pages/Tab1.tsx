@@ -29,7 +29,7 @@ const Tab1: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
           {constantsDivs()}
-          {error}
+          <div>{error.toString()}</div>
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Tab 1</IonTitle>
