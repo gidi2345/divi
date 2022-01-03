@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "divi",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
