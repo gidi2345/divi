@@ -7,16 +7,17 @@ import {useEffect, useState} from "react";
 
 const Tab1: React.FC = () => {
     const [contacts, setContacts] = useState<any[]>([123456]);
+    const [error, setError] = useState('');
     useEffect(() => {
         Contacts.getContacts().then(result => {
             for (const contact of result.contacts) {
                 setContacts([...contacts, contact])
             }
-        });
-    })
+        }).catch((err) => setError(err));
+    },[contacts])
 
     const constantsDivs = () => {
-        return contacts.map((contact) => <div>{contact}</div>)
+        return contacts.map((contact, index) => <div key={index}>{contact}</div>)
     }
 
   return (
@@ -28,6 +29,7 @@ const Tab1: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
           {constantsDivs()}
+          {error}
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Tab 1</IonTitle>
